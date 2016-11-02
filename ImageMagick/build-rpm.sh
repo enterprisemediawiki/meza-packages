@@ -30,7 +30,7 @@ curl -LO https://raw.githubusercontent.com/enterprisemediawiki/meza/master/scrip
 bash yums.sh
 
 # Make sure these other dependencies are in place
-yum install ruby-devel gcc make rpm-build
+yum install -y ruby-devel gcc make rpm-build
 gem install fpm
 
 # Get ImageMagick
@@ -59,16 +59,16 @@ make install DESTDIR="$rpm_destdir"
 cd /tmp
 fpm -s dir -t rpm -n imagemagick -v "$imagick_version" -C "$rpm_destdir" \
 	-p imagemagick_VERSION_ARCH.rpm \
-	--after-install "$DIR/after-install.sh"
+	--after-install "$DIR/after-install.sh" \
 	usr/local/bin usr/local/etc usr/local/include usr/local/lib usr/local/share
 
 # if an old RPM is in repository /RPMs directory, remove it
-if [ -f "$DIR/../RPMs/imagemagick_*" ]; then
-	rm -rf "$DIR/../RPMs/imagemagick_*"
+if [ -f "$DIR/../RPMs/imagemagick_"* ]; then
+	rm -rf "$DIR/../RPMs/imagemagick_"*
 fi
 
 # move file to repository /RPMs directory
-mv "/tmp/imagemagick_$imagick_version*" "$DIR/../RPMs/"
+mv "/tmp/imagemagick_$imagick_version"* "$DIR/../RPMs/"
 
 # remove stuff in /tmp (I don't think we want to do this since most of the
 # time this script will be run on a dummy VM and keeping the files won't hurt
