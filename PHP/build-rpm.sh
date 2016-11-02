@@ -112,7 +112,7 @@ echo "Begin make"
 make
 
 echo "Begin make install"
-mkdir "$rpm_destdir"
+mkdir -p "$rpm_destdir/usr/local/php"
 make install DESTDIR="$rpm_destdir"
 
 # create RPM
