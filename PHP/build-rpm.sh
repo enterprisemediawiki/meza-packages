@@ -69,6 +69,7 @@ cd "php-$phpversion"
 #
 # Configure, make, make install
 #
+echo "Begin configure"
 ./configure \
     --with-apxs2=/usr/bin/apxs \
     --enable-bcmath \
@@ -107,6 +108,10 @@ cd "php-$phpversion"
     --enable-intl \
     --prefix=/usr/local/php
 
+echo "Begin make"
+make
+
+echo "Begin make install"
 mkdir "$rpm_destdir"
 make install DESTDIR="$rpm_destdir"
 

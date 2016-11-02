@@ -4,17 +4,15 @@ Meza Packages
 Repository to build and maintain meza RPMs.
 
 
-Building RPMs
-=============
-
-
+## Building RPMs
 
 ```bash
 yum install git -y
 cd ~
 git clone https://github.com/enterprisemediawiki/meza-packages
 cd meza-packages
-cd <the package you want to build>
+ls
+cd <the package you want to (re)build from the ls command above>
 sudo bash build-rpm.sh
 ```
 
@@ -27,3 +25,7 @@ git add -A
 git commit -m "what you changed and why"
 git push origin new-branch-name
 ```
+
+## Using the RPMs
+
+These RPMs are intended to be used by [meza](https://github.com/enterprisemediawiki/meza). There are no gaurantees they will work anywhere else. See installation scripts for meza for where they are used.
