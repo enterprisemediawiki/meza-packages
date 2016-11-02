@@ -26,8 +26,9 @@ mkdir -p "$working_dir"
 cd "$working_dir"
 
 # Get yums.sh from meza, use it to initialize server
+cd /tmp
 curl -LO https://raw.githubusercontent.com/enterprisemediawiki/meza/master/scripts/yums.sh
-bash yums.sh
+bash /tmp/yums.sh
 
 # Make sure these other dependencies are in place
 yum install -y ruby-devel gcc make rpm-build

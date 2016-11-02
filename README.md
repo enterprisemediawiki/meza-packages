@@ -26,6 +26,14 @@ git commit -m "what you changed and why"
 git push origin new-branch-name
 ```
 
+Note that if you're building this on a VM you may need to setup your git config:
+
+```bash
+git config --global user.name "James Montalvo"
+git config --global user.email "jamesmontalvo3@gmail.com"
+git config --global core.editor vi
+```
+
 ## Using the RPMs
 
 These RPMs are intended to be used by [meza](https://github.com/enterprisemediawiki/meza). There are no gaurantees they will work anywhere else. See installation scripts for meza for where they are used.
