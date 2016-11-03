@@ -7,6 +7,13 @@ if [ "$(whoami)" != "root" ]; then
     exit 1
 fi
 
+echo
+echo
+echo "THIS SCRIPT DOES NOT WORK."
+echo "MEZA DOES NOT CURRENTLY USE THIS TO PACKAGE PHP"
+echo "ABORTING"
+exit 1
+
 echo "Starting script rpm-imagemagick.sh"
 
 # If /usr/local/bin is not in PATH then add it
@@ -113,11 +120,13 @@ echo "Begin make"
 make
 
 echo "Begin make install"
-mkdir -p "$rpm_destdir/usr/local/php"
-make install DESTDIR="$rpm_destdir"
+mkdir -p "$rpm_destdir"
+INSTALL_ROOT="$rpm_destdir" DESTDIR="$rpm_destdir" make install
+make install INSTALL_ROOT="$rpm_destdir"
 
 # create RPM
 cd /tmp
+echo "Begin rpm packaging"
 fpm -s dir -t rpm -n php -v "$phpversion" -C "$rpm_destdir" \
     -p php_VERSION_ARCH.rpm \
     --after-install "$DIR/after-install.sh" \
